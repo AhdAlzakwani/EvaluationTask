@@ -40,7 +40,7 @@ public class Main {
 		Scanner userScanner = new Scanner(System.in);
 		boolean menuExit = true;
 		boolean SearchExit = true;
-		List<UniverCity> univerCity;
+		
 
 		while (menuExit) {
 
@@ -75,22 +75,22 @@ public class Main {
 						Files.writeString(pathFile, infoString, StandardCharsets.UTF_8);
 						System.out.println("File Save Successfull ...");
 
-//							Gson gson = new Gson();
-//
-//							UniverCity result = gson.fromJson(universitiesinformation.toString(), UniverCity.class);
-//							for (int k = 0; k < universitiesinformation.length(); k++) {
-//
-//								System.out.println("User " + k);
-//								System.out.println(" ***************************** " + "|");
-//								System.out.println(
-//										"|" + "The Name Is : " + result.getCountry());
-//								System.out.println("|" + "The Cell Is : " + result.getDomains());
-//								System.out.println("|" + "The Email Is : " + result.getWeb_pages());
-//								System.out
-//										.println("|" + "The Gender Is : " + result.getAlpha_two_code());
-//								System.out.println("|" + "The Phone Is : " + result.getName());
-//								System.out.println("|" + " ***************************** " + "|");
-							//}
+							Gson gson = new Gson();
+
+							Executer result = gson.fromJson(universitiesinformation.toString(), Executer.class);
+							for (int k = 0; k < 2; k++) {
+
+								System.out.println("User " + k);
+								System.out.println(" ***************************** " + "|");
+								System.out.println(
+										"|" + "Country : " + result.getUniverCity().get(0).getCountry());
+								System.out.println("|" + "Domains : " + result.getUniverCity().get(0).getDomains());
+								System.out.println("|" + " Web_pages : " + result.getUniverCity().get(0).getWeb_pages());
+								System.out
+										.println("|" + "Alpha_two_code : " + result.getUniverCity().get(0).getAlpha_two_code());
+								System.out.println("|" + "Name : " + result.getUniverCity().get(0).getName());
+								System.out.println("|" + " ***************************** " + "|");
+							}
 
 					}
 

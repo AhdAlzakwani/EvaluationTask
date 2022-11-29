@@ -5,6 +5,9 @@ import java.util.List;
 public class UniverCity {
 	String country;
 	List<String> domains;
+	List<String> web_pages;
+	String alpha_two_code;
+	String name;
 	public String getCountry() {
 		return country;
 	}
@@ -35,9 +38,7 @@ public class UniverCity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	List<String> web_pages;
-	String alpha_two_code;
-	String name;
+	
 	
 
 }
