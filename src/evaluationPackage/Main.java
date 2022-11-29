@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Stack;
 
 import com.google.gson.Gson;
 import evaluationPackage.Main;
@@ -22,13 +24,14 @@ import evaluationPackage.Main;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		final String path = "C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt";
 		Scanner userScanner = new Scanner(System.in);
 		boolean menuExit = true;
 		boolean SearchExit = true;
-		ArrayList<String> userInputList = new ArrayList<>();
+		Stack<String> userInputList = new Stack<>();
 		Set<String> UserInputset1 = new HashSet<>();
+		
 
 
 		while (menuExit) {
@@ -64,22 +67,22 @@ public class Main {
 						Files.writeString(pathFile, infoString, StandardCharsets.UTF_8);
 						System.out.println("File Save Successfull ...");
 
-							Gson gson = new Gson();
-
-							Executer result = gson.fromJson(universitiesinformation.toString(), Executer.class);
-							for (int k = 0; k < 2; k++) {
-
-								System.out.println("User " + k);
-								System.out.println(" ***************************** " + "|");
-								System.out.println(
-										"|" + "Country : " + result.getUniverCity().get(0).getCountry());
-								System.out.println("|" + "Domains : " + result.getUniverCity().get(0).getDomains());
-								System.out.println("|" + " Web_pages : " + result.getUniverCity().get(0).getWeb_pages());
-								System.out
-										.println("|" + "Alpha_two_code : " + result.getUniverCity().get(0).getAlpha_two_code());
-								System.out.println("|" + "Name : " + result.getUniverCity().get(0).getName());
-								System.out.println("|" + " ***************************** " + "|");
-							}
+//							Gson gson = new Gson();
+//
+//							Executer result = gson.fromJson(universitiesinformation.toString(), Executer.class);
+//							for (int k = 0; k < 2; k++) {
+//
+//								System.out.println("User " + k);
+//								System.out.println(" ***************************** " + "|");
+//								System.out.println(
+//										"|" + "Country : " + result.getUniverCity().get(0).getCountry());
+//								System.out.println("|" + "Domains : " + result.getUniverCity().get(0).getDomains());
+//								System.out.println("|" + " Web_pages : " + result.getUniverCity().get(0).getWeb_pages());
+//								System.out
+//										.println("|" + "Alpha_two_code : " + result.getUniverCity().get(0).getAlpha_two_code());
+//								System.out.println("|" + "Name : " + result.getUniverCity().get(0).getName());
+//								System.out.println("|" + " ***************************** " + "|");
+							//}
 
 					}
 
@@ -112,6 +115,20 @@ public class Main {
 				        }
 					 
 				        File f1=new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt"); 
+				        Scanner scanner = new Scanner(f1);
+				   	 while(scanner.hasNextLine())
+		 					
+		 				{
+
+		                 //System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
+		 				Path pathFile = Paths.get(path);
+		 				String infoString1 = scanner.next().replaceAll("[^a-zA-Z]*", "");
+		 			     for(int i =0; i< infoString1.length(); i++ )
+		 			     {
+		 			
+		 				Files.writeString(pathFile, infoString1, StandardCharsets.UTF_8);
+		 			     }
+		 				}
 				        //Creation of File Descriptor for input file
 					      String[] words=null;  //Intialize the word Array
 					      FileReader fr = null;
@@ -139,17 +156,15 @@ public class Main {
 							      {
 							             if (word.equals(input))   //Search for the given word
 							             {
+							            
                                          
-									 
 							               count++;    
 							             
-							             }
-							             
+							             }    
 							      }
 							     }
 							  }
-							
-							
+
 							if(count!=0)  //Check for count not equal to zero
 						      {
 						         System.out.println("The given word is present for "+count+ " Times in the file");
@@ -187,6 +202,28 @@ public class Main {
 				 
 				
 
+				break;
+			case 3:
+				
+				
+				File file = new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt");  // create File object to read from
+				Scanner scanner = new Scanner(file);       // create scanner to read
+				while(scanner.hasNextLine())
+					
+				{
+
+                System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
+				Path pathFile = Paths.get(path);
+				String infoString = scanner.next().replaceAll("[^a-zA-Z]*", "");
+				//userInputList.push(infoString);
+				Files.writeString(pathFile, infoString, StandardCharsets.UTF_8);
+                    
+				}				
+
+				
+				System.out.println("File Save Successfull ...");
+				
+				
 				break;
 
 			case 0:

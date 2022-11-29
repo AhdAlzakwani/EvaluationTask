@@ -3,5 +3,5 @@
 3) Open API URL http://universities.hipolabs.com/search .
 4) Create Switch Casess which include Consume API and write Response to File then search string value .
 5)case 1: fetch API URL And Display it , Then Save it to a File.
-2) case 2: From the file which we create it and save the Json insid it , reading from the file 
+6) case 2: From the file which we create it and save the Json insid it , reading from the file 
 and search about spacific String words by user input .
