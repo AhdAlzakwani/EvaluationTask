@@ -122,7 +122,7 @@ public class Main {
 		 				{
 
 		                 System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
-		                	Files.writeString(pathFile, scanner.next().replaceAll("[^a-zA-Z]*", ""), StandardCharsets.UTF_8);
+		                 Files.writeString(pathFile, scanner.next().replaceAll("[^a-zA-Z]*", ""), StandardCharsets.UTF_8);
 
 		 				}
 				 
