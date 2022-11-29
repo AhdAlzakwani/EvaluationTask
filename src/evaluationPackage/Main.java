@@ -5,10 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +22,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,22 +75,22 @@ public class Main {
 						Files.writeString(pathFile, infoString, StandardCharsets.UTF_8);
 						System.out.println("File Save Successfull ...");
 
-							Gson gson = new Gson();
-
-							UniverCity result = gson.fromJson(universitiesinformation.toString(), UniverCity.class);
-							for (int k = 0; k < universitiesinformation.length(); k++) {
-
-								System.out.println("User " + k);
-								System.out.println(" ***************************** " + "|");
-								System.out.println(
-										"|" + "The Name Is : " + result.getCountry());
-								System.out.println("|" + "The Cell Is : " + result.getDomains());
-								System.out.println("|" + "The Email Is : " + result.getWeb_pages());
-								System.out
-										.println("|" + "The Gender Is : " + result.getAlpha_two_code());
-								System.out.println("|" + "The Phone Is : " + result.getName());
-								System.out.println("|" + " ***************************** " + "|");
-							}
+//							Gson gson = new Gson();
+//
+//							UniverCity result = gson.fromJson(universitiesinformation.toString(), UniverCity.class);
+//							for (int k = 0; k < universitiesinformation.length(); k++) {
+//
+//								System.out.println("User " + k);
+//								System.out.println(" ***************************** " + "|");
+//								System.out.println(
+//										"|" + "The Name Is : " + result.getCountry());
+//								System.out.println("|" + "The Cell Is : " + result.getDomains());
+//								System.out.println("|" + "The Email Is : " + result.getWeb_pages());
+//								System.out
+//										.println("|" + "The Gender Is : " + result.getAlpha_two_code());
+//								System.out.println("|" + "The Phone Is : " + result.getName());
+//								System.out.println("|" + " ***************************** " + "|");
+							//}
 
 					}
 
@@ -98,33 +100,100 @@ public class Main {
 
 				break;
 			case 2:
+				 while(SearchExit) {
+					 File dir = new File("C:\\Users\\User009\\Desktop\\EvaluationTask");
+					 FilenameFilter textFilter = new FilenameFilter() {
+				            public boolean accept(File dir, String name) {
+				                return name.toLowerCase().endsWith(".txt");
+				            }
+				        };
+				        File[] files = dir.listFiles(textFilter);
+				        for (File file : files) {
+				            if (file.isDirectory()) {
+				                System.out.print("directory:");
+				            } else {
+				                System.out.print("     file:");
+				            }
+				            try {
+								System.out.println(file.getCanonicalPath());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+				        }
+					 
+				        File f1=new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt"); 
+				        //Creation of File Descriptor for input file
+					      String[] words=null;  //Intialize the word Array
+					      FileReader fr = null;
+						try {
+							fr = new FileReader(f1);
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}  //Creation of File Reader object
+					      BufferedReader br = new BufferedReader(fr); //Creation of BufferedReader object
+					      String s;     
+					      System.out.println("Please Write word to be Search :");
 
-				Scanner sc1 = new Scanner(System.in);
-				System.out.println(" Enter word to Search :");
-				String word = sc1.next();
-				boolean flag = false;
-				int count = 0;
+					      String input=userScanner.next();   // Input word to be searched
+					      int count=0;   //Intialize the word to zero
+					      try {
+							while((s=br.readLine())!=null)   //Reading Content from the file
+							  {
+							     words=s.split(" "); //Split the word using space
+							     
+							     for(File c: files) {
+							      for (String word : words) 
+							      {
+							             if (word.equals(input))   //Search for the given word
+							             {
+									         System.out.println("The Word is : \t"+input+"\t the file is :\t "+c);
+									 
+							               count++;    
+							             
+							             }
+							             
+							      }
+							     }
+							  }
+							
+							if(count!=0)  //Check for count not equal to zero
+						      {
+						         System.out.println("The given word is present for "+count+ " Times in the file");
+						         System.out.println("File moved successfully ........");
 
-				Scanner scannerSearch = null;
-				try {
-					scannerSearch = new Scanner(new FileInputStream("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt"));
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				while (scannerSearch.hasNextLine()) {
-					String line = scannerSearch.nextLine();
-					System.out.println(line);
-					if (line.indexOf(word) != -1) {
-						flag = true;
-						count = count + 1;
-					}
-				}
-				if (flag) {
-					System.out.println("File contains the specified word");
-					System.out.println("Number of occurrences is: " + count);
-				} else {
-					System.out.println("File does not contain the specified word");
-				}
+						         
+						      }
+						      else
+						      {
+						         System.out.println("The given word is not present in the file");
+						      }
+							
+							System.out.println("If You want to Continue Searching press 1 , If Not Press 0");
+					         int search = userScanner.nextInt();
+					         if(search == 0)
+					         {
+					        	 SearchExit = false;
+					         }
+					         else {
+					        	 SearchExit = true;
+					         }
+					         
+					         fr.close();
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				        
+				        
+				        
+				        
+				        
+				 }SearchExit = false;
+				 
+				
 
 				break;
 
