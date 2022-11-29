@@ -1,5 +1,4 @@
 package evaluationPackage;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,29 +8,17 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
-
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Stack;
-import com.google.gson.stream.*;
-import com.google.gson.Gson;
+import java.util.Set;
 
+import com.google.gson.Gson;
 import evaluationPackage.Main;
+
 
 public class Main {
 
@@ -40,7 +27,9 @@ public class Main {
 		Scanner userScanner = new Scanner(System.in);
 		boolean menuExit = true;
 		boolean SearchExit = true;
-		
+		ArrayList<String> userInputList = new ArrayList<>();
+		Set<String> UserInputset1 = new HashSet<>();
+
 
 		while (menuExit) {
 
@@ -138,6 +127,8 @@ public class Main {
 
 					      String input=userScanner.next();   // Input word to be searched
 					      int count=0;   //Intialize the word to zero
+					      UserInputset1.add(input);// add user Input in list
+					      System.out.println(UserInputset1.toString());
 					      try {
 							while((s=br.readLine())!=null)   //Reading Content from the file
 							  {
@@ -148,7 +139,7 @@ public class Main {
 							      {
 							             if (word.equals(input))   //Search for the given word
 							             {
-									         System.out.println("The Word is : \t"+input+"\t the file is :\t "+c);
+                                         
 									 
 							               count++;    
 							             
@@ -157,6 +148,7 @@ public class Main {
 							      }
 							     }
 							  }
+							
 							
 							if(count!=0)  //Check for count not equal to zero
 						      {
