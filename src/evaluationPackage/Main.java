@@ -116,45 +116,40 @@ public class Main {
 					 
 				        File f1=new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt"); 
 				        Scanner scanner = new Scanner(f1);
+				    	Path pathFile = Paths.get(path);
 				   	 while(scanner.hasNextLine())
 		 					
 		 				{
 
-		                 //System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
-		 				Path pathFile = Paths.get(path);
-		 				String infoString1 = scanner.next().replaceAll("[^a-zA-Z]*", "");
-		 			     for(int i =0; i< infoString1.length(); i++ )
-		 			     {
-		 			
-		 				Files.writeString(pathFile, infoString1, StandardCharsets.UTF_8);
-		 			     }
+		                 System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
+		                	Files.writeString(pathFile, scanner.next().replaceAll("[^a-zA-Z]*", ""), StandardCharsets.UTF_8);
+
 		 				}
-				        //Creation of File Descriptor for input file
-					      String[] words=null;  //Intialize the word Array
+				 
+					      String[] words=null;  
 					      FileReader fr = null;
 						try {
 							fr = new FileReader(f1);
 						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}  //Creation of File Reader object
-					      BufferedReader br = new BufferedReader(fr); //Creation of BufferedReader object
+						} 
+					      BufferedReader br = new BufferedReader(fr); 
 					      String s;     
 					      System.out.println("Please Write word to be Search :");
 
-					      String input=userScanner.next();   // Input word to be searched
-					      int count=0;   //Intialize the word to zero
-					      UserInputset1.add(input);// add user Input in list
+					      String input=userScanner.next();   
+					      int count=0;  
+					      UserInputset1.add(input);
 					      System.out.println(UserInputset1.toString());
 					      try {
-							while((s=br.readLine())!=null)   //Reading Content from the file
+							while((s=br.readLine())!=null)   
 							  {
-							     words=s.split(" "); //Split the word using space
+							     words=s.split(" "); 
 							     
 							     for(File c: files) {
 							      for (String word : words) 
 							      {
-							             if (word.equals(input))   //Search for the given word
+							             if (word.equals(input))   
 							             {
 							            
                                          
@@ -165,7 +160,7 @@ public class Main {
 							     }
 							  }
 
-							if(count!=0)  //Check for count not equal to zero
+							if(count!=0)  
 						      {
 						         System.out.println("The given word is present for "+count+ " Times in the file");
 						         System.out.println("File moved successfully ........");
@@ -190,7 +185,7 @@ public class Main {
 					         fr.close();
 							
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
+						
 							e.printStackTrace();
 						}
 				        
@@ -202,28 +197,6 @@ public class Main {
 				 
 				
 
-				break;
-			case 3:
-				
-				
-				File file = new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt");  // create File object to read from
-				Scanner scanner = new Scanner(file);       // create scanner to read
-				while(scanner.hasNextLine())
-					
-				{
-
-                System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
-				Path pathFile = Paths.get(path);
-				String infoString = scanner.next().replaceAll("[^a-zA-Z]*", "");
-				//userInputList.push(infoString);
-				Files.writeString(pathFile, infoString, StandardCharsets.UTF_8);
-                    
-				}				
-
-				
-				System.out.println("File Save Successfull ...");
-				
-				
 				break;
 
 			case 0:
