@@ -1,7 +1,35 @@
 1) Create New repository in GitHub.
 2) Create New Project in E-clips .
-3) Open API URL http://universities.hipolabs.com/search .
+3) Open API URL :
+ http://universities.hipolabs.com/search .
 4) Create Switch Casess which include Consume API and write Response to File then search string value .
-5)case 1: fetch API URL And Display it , Then Save it to a File.
-6) case 2: From the file which we create it and save the Json insid it , reading from the file 
-and search about spacific String words by user input .
+switch (option) {
+			case 1:
+breake;
+case 2:
+breake;
+case 0:
+Exit From Program .
+breake;
+
+5)case 1: fetch API URL And Display it , Then Save it to a File:
+URL url = new URL("http://universities.hipolabs.com/search");
+					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+					conn.setRequestMethod("GET");
+					conn.connect();
+----> write into the file :
+Path pathFile = Paths.get(path);
+						String infoString = universitiesinformation.toString();
+						Files.writeString(pathFile, infoString, StandardCharsets.UTF_8);
+						System.out.println("File Save Successfull ...");
+
+6) case 2: From the file which we create it and save the Json insid it , reading from the file ---->
+and search about spacific String words by user input  ----->
+ BufferedReader br = new BufferedReader(fr); 
+					      String s;     
+					      System.out.println("Please Write word to be Search :");
+
+					      String input=userScanner.next();
+
+
+
