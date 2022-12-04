@@ -1,4 +1,5 @@
 package evaluationPackage;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +22,6 @@ import java.util.Stack;
 import com.google.gson.Gson;
 import evaluationPackage.Main;
 
-
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -31,13 +31,12 @@ public class Main {
 		boolean SearchExit = true;
 		Stack<String> userInputList = new Stack<>();
 		Set<String> UserInputset1 = new HashSet<>();
-		
-
 
 		while (menuExit) {
 
 			System.out.println("1- Consume API && Write Response in File ");
 			System.out.println("2- Search Words");
+			System.out.println("4- Fix Words");
 			System.out.println("0- Exit Program");
 
 			int option = userScanner.nextInt();
@@ -67,136 +66,125 @@ public class Main {
 						Files.writeString(pathFile, infoString, StandardCharsets.UTF_8);
 						System.out.println("File Save Successfull ...");
 
-//							Gson gson = new Gson();
-//
-//							Executer result = gson.fromJson(universitiesinformation.toString(), Executer.class);
-//							for (int k = 0; k < 2; k++) {
-//
-//								System.out.println("User " + k);
-//								System.out.println(" ***************************** " + "|");
-//								System.out.println(
-//										"|" + "Country : " + result.getUniverCity().get(0).getCountry());
-//								System.out.println("|" + "Domains : " + result.getUniverCity().get(0).getDomains());
-//								System.out.println("|" + " Web_pages : " + result.getUniverCity().get(0).getWeb_pages());
-//								System.out
-//										.println("|" + "Alpha_two_code : " + result.getUniverCity().get(0).getAlpha_two_code());
-//								System.out.println("|" + "Name : " + result.getUniverCity().get(0).getName());
-//								System.out.println("|" + " ***************************** " + "|");
-							//}
-
 					}
 
 				} catch (Exception e) {
 					System.out.println(e);
 				}
-
 				break;
+
 			case 2:
-				 while(SearchExit) {
-					 File dir = new File("C:\\Users\\User009\\Desktop\\EvaluationTask");
-					 FilenameFilter textFilter = new FilenameFilter() {
-				            public boolean accept(File dir, String name) {
-				                return name.toLowerCase().endsWith(".txt");
-				            }
-				        };
-				        File[] files = dir.listFiles(textFilter);
-				        for (File file : files) {
-				            if (file.isDirectory()) {
-				                System.out.print("directory:");
-				            } else {
-				                System.out.print("     file:");
-				            }
-				            try {
-								System.out.println(file.getCanonicalPath());
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-				        }
-					 
-				        File f1=new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt"); 
-				        Scanner scanner = new Scanner(f1);
-				    	Path pathFile = Paths.get(path);
-				   	 while(scanner.hasNextLine())
-		 					
-		 				{
-
-		                 System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
-		                 Files.writeString(pathFile, scanner.next().replaceAll("[^a-zA-Z]*", ""), StandardCharsets.UTF_8);
-
-		 				}
-				 
-					      String[] words=null;  
-					      FileReader fr = null;
+				while (SearchExit) {
+					File dir = new File("C:\\Users\\User009\\Desktop\\EvaluationTask");
+					FilenameFilter textFilter = new FilenameFilter() {
+						public boolean accept(File dir, String name) {
+							return name.toLowerCase().endsWith(".txt");
+						}
+					};
+					File[] files = dir.listFiles(textFilter);
+					for (File file : files) {
+						if (file.isDirectory()) {
+							System.out.print("directory:");
+						} else {
+							System.out.print("     file:");
+						}
 						try {
-							fr = new FileReader(f1);
-						} catch (FileNotFoundException e) {
-							e.printStackTrace();
-						} 
-					      BufferedReader br = new BufferedReader(fr); 
-					      String s;     
-					      System.out.println("Please Write word to be Search :");
-
-					      String input=userScanner.next();   
-					      int count=0;  
-					      UserInputset1.add(input);
-					      System.out.println(UserInputset1.toString());
-					      try {
-							while((s=br.readLine())!=null)   
-							  {
-							     words=s.split(" "); 
-							     
-							     for(File c: files) {
-							      for (String word : words) 
-							      {
-							             if (word.equals(input))   
-							             {
-							            
-                                         
-							               count++;    
-							             
-							             }    
-							      }
-							     }
-							  }
-
-							if(count!=0)  
-						      {
-						         System.out.println("The given word is present for "+count+ " Times in the file");
-						         System.out.println("File moved successfully ........");
-
-						         
-						      }
-						      else
-						      {
-						         System.out.println("The given word is not present in the file");
-						      }
-							
-							System.out.println("If You want to Continue Searching press 1 , If Not Press 0");
-					         int search = userScanner.nextInt();
-					         if(search == 0)
-					         {
-					        	 SearchExit = false;
-					         }
-					         else {
-					        	 SearchExit = true;
-					         }
-					         
-					         fr.close();
-							
+							System.out.println(file.getCanonicalPath());
 						} catch (IOException e) {
-						
+							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-				        
-				        
-				        
-				        
-				        
-				 }SearchExit = false;
-				 
-				
+					}
 
+					File f1 = new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt");
+					Scanner scanner = new Scanner(f1);
+					Path pathFile = Paths.get(path);
+					 String[] ch = {",","[","{",":","/","]","}"};
+					while (scanner.hasNextLine())
+
+					{
+						//System.out.println(scanner.next().replaceAll("[^a-zA-Z]*", ""));
+                       
+						Files.writeString(pathFile, scanner.nextLine().replaceAll("\\W", " "),
+								StandardCharsets.UTF_8);
+                       
+						
+
+					}
+
+
+					String[] words = null;
+					FileReader fr = null;
+					try {
+						fr = new FileReader(f1);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+					BufferedReader br = new BufferedReader(fr);
+					String s;
+					System.out.println("Please Write word to be Search :");
+
+					String input = userScanner.next();
+					int count = 0;
+					UserInputset1.add(input);
+					System.out.println(UserInputset1.toString());
+					try {
+						while ((s = br.readLine()) != null) {
+							words = s.split(" ");
+
+							for (File c : files) {
+								for (String word : words) {
+									if (word.equals(input)) {
+
+										count++;
+
+									}
+								}
+							}
+						}
+
+						if (count != 0) {
+							System.out.println("The given word is present for " + count + " Times in the file");
+							System.out.println("File moved successfully ........");
+
+						} else {
+							System.out.println("The given word is not present in the file");
+						}
+
+						System.out.println("If You want to Continue Searching press 1 , If Not Press 0");
+						int search = userScanner.nextInt();
+						if (search == 0) {
+							SearchExit = false;
+						} else {
+							SearchExit = true;
+						}
+
+						fr.close();
+
+					} catch (IOException e) {
+
+						e.printStackTrace();
+					}
+
+				}
+				SearchExit = false;
+
+				break;
+				
+			case 3: 
+				File f1 = new File("C:\\Users\\User009\\Desktop\\EvaluationTask\\EvaluationTaskFile.txt");
+				Scanner scanner = new Scanner(f1);
+				Path pathFile = Paths.get(path);
+				
+				while (scanner.hasNextLine())
+
+				{
+
+					Files.writeString(pathFile,
+							scanner.nextLine().replaceAll("(?<=[A-Za-z])(?=[0-9])|(?<=[0-9])(?=[A-Za-z])", " "),
+							StandardCharsets.UTF_8);
+
+				}
 				break;
 
 			case 0:
