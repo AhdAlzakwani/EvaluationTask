@@ -6,5 +6,7 @@
  *
  */
 module EvaluationTask {
-	requires gson;
+	requires java.base;
+	requires java.xml;
+	
 }
